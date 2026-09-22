@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>传统戏曲锣鼓经排练可视化</title>
+  <title>锣鼓经分段试排与错拍复盘台</title>
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
   <main class="app">
     <header class="top">
       <div>
-        <p>Luogujing Rehearsal Grid</p>
-        <h1>传统戏曲锣鼓经排练可视化</h1>
+        <p>Luogujing Rehearsal &amp; Review Desk</p>
+        <h1>锣鼓经分段试排与错拍复盘台</h1>
       </div>
       <div class="transport">
         <button id="playBtn" type="button">播放</button>
@@ -23,7 +23,7 @@
     <section class="controls">
       <label>剧目片段<input id="pieceName" placeholder="如：出场锣鼓-慢起"></label>
       <label>速度BPM<input id="bpmInput" type="number" min="40" max="220" value="96"></label>
-      <label>循环小节
+      <label>试排分段
         <select id="loopSelect">
           <option value="">全段</option>
           <option value="0">第1小节</option>
@@ -32,7 +32,20 @@
           <option value="3">第4小节</option>
         </select>
       </label>
-      <label>难点批注<input id="noteInput" placeholder="如：第2小节小锣晚半拍"></label>
+      <label>难点批注<input id="noteInput" placeholder="如：第2小节小锣晚半拍，回车提交"></label>
+    </section>
+
+    <section class="rehearsal-bar">
+      <div class="rb-info">
+        <h2>分段试排</h2>
+        <p id="rehearsalStatus" class="rb-status">尚未开排</p>
+      </div>
+      <div class="rb-actions">
+        <button id="startBtn" class="primary" type="button">开始试排</button>
+        <button id="endBtn" class="warn" type="button" disabled>结束试排</button>
+        <button id="closeReviewBtn" type="button" disabled>结束复盘</button>
+      </div>
+      <p id="rehearsalHint" class="rb-hint"></p>
     </section>
 
     <section class="stage">
@@ -42,15 +55,33 @@
       </aside>
       <section class="score">
         <div id="grid" class="grid"></div>
+        <div class="legend">
+          <span><i class="dot mark"></i>本次错拍</span>
+          <span><i class="dot issue"></i>待处理（连续两次同类）</span>
+          <span><i class="dot resolved"></i>已更正</span>
+          <span>试排期间谱面锁定，点选格子登记错拍</span>
+        </div>
       </section>
       <aside class="notes">
         <h2>段落结构</h2>
         <div id="structure"></div>
+
+        <h2>错拍复盘</h2>
+        <div id="reviewPanel"></div>
+
+        <h2>待处理问题</h2>
+        <div id="issuesList"></div>
+
         <h2>批注</h2>
         <div id="notesList"></div>
       </aside>
     </section>
   </main>
+
+  <!-- 业务文件：规则 → 存储 → 交互 -->
+  <script src="./rules.js"></script>
+  <script src="./store.js"></script>
+  <script src="./ui.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>
