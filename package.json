@@ -1,0 +1,7 @@
+{
+  "name": "luogujing-trial-review-desk",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "锣鼓经分段试排与错拍复盘台：规则 / 存储 / 交互三层分离"
+}

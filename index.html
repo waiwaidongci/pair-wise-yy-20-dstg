@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>传统戏曲锣鼓经排练可视化</title>
+  <title>锣鼓经分段试排与错拍复盘台</title>
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
   <main class="app">
     <header class="top">
       <div>
-        <p>Luogujing Rehearsal Grid</p>
-        <h1>传统戏曲锣鼓经排练可视化</h1>
+        <p>Luogujing Trial &amp; Review Desk</p>
+        <h1>锣鼓经分段试排与错拍复盘台</h1>
       </div>
       <div class="transport">
         <button id="playBtn" type="button">播放</button>
@@ -19,6 +19,10 @@
         <button id="saveBtn" type="button">保存方案</button>
       </div>
     </header>
+
+    <div id="flash" class="flash" role="status"></div>
+
+    <section id="sessionBar" class="session-bar"></section>
 
     <section class="controls">
       <label>剧目片段<input id="pieceName" placeholder="如：出场锣鼓-慢起"></label>
@@ -32,25 +36,41 @@
           <option value="3">第4小节</option>
         </select>
       </label>
-      <label>难点批注<input id="noteInput" placeholder="如：第2小节小锣晚半拍"></label>
+      <label>难点批注<input id="noteInput" placeholder="回车添加，如：第2小节小锣晚半拍"></label>
     </section>
 
     <section class="stage">
-      <aside class="segments">
+      <aside class="side">
         <h2>已存方案</h2>
-        <div id="savedList"></div>
+        <div id="savedList" class="side-list"></div>
+        <h2>复盘档案（含原方案）</h2>
+        <div id="archiveList" class="side-list"></div>
       </aside>
-      <section class="score">
-        <div id="grid" class="grid"></div>
+
+      <section class="score-wrap">
+        <section class="score">
+          <div id="grid" class="grid"></div>
+        </section>
+        <section class="under-score">
+          <div>
+            <h2>段落结构</h2>
+            <div id="structure"></div>
+          </div>
+          <div>
+            <h2>批注</h2>
+            <div id="notesList"></div>
+          </div>
+        </section>
       </section>
-      <aside class="notes">
-        <h2>段落结构</h2>
-        <div id="structure"></div>
-        <h2>批注</h2>
-        <div id="notesList"></div>
+
+      <aside class="side review-side">
+        <div id="marksPanel"></div>
+        <div id="statsBox"></div>
+        <h2>待处理问题</h2>
+        <div id="pendingList"></div>
       </aside>
     </section>
   </main>
-  <script src="./app.js"></script>
+  <script type="module" src="./ui.js"></script>
 </body>
 </html>
